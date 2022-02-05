@@ -1,3 +1,4 @@
+import TestIds from 'helpers/TestIds';
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 
@@ -7,7 +8,9 @@ type Props = {
 
 const Chip = ({ label }: Props) => (
   <View style={styles.container}>
-    <Text style={styles.label}>{label}</Text>
+    <Text style={styles.label} testID={TestIds.CHIP_LABEL}>
+      {label}
+    </Text>
   </View>
 );
 

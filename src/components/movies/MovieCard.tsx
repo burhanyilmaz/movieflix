@@ -3,21 +3,23 @@ import Spacer from 'components/core/Spacer';
 import Poster from 'components/movies/Poster';
 import { Endpoints } from 'helpers/constants';
 import { Text, View, StyleSheet, FlatList } from 'react-native';
-import { Genre, Movie } from 'store/types/MovieModelTypes';
+import { Genre, Movie } from 'stores/types/MovieModelTypes';
 import Chip from 'components/core/Chip';
 import { Star } from 'components/core/icons';
+import TestIds from 'helpers/TestIds';
 
 type MovieCardProps = {
   movie: Movie;
+  testID?: string;
   genres?: Genre[];
   type?: 'vertical' | 'horizontal';
 };
 
-const MovieCard = ({ movie, type = 'horizontal', genres }: MovieCardProps) => {
+const MovieCard = ({ movie, type = 'horizontal', genres, testID }: MovieCardProps) => {
   const { title, poster_path, vote_average, release_date } = movie;
 
   return (
-    <View style={styles[type]}>
+    <View style={styles[type]} testID={testID}>
       <Poster
         image={Endpoints.image(poster_path)}
         size={type === 'horizontal' ? 'default' : 'medium'}
@@ -25,7 +27,7 @@ const MovieCard = ({ movie, type = 'horizontal', genres }: MovieCardProps) => {
       <View style={{ marginLeft: type === 'horizontal' ? 10 : 0 }}>
         <Text style={{ ...styles.title, marginTop: type === 'vertical' ? 12 : 0 }}>{title}</Text>
         <View style={styles.ratingContainer}>
-          <Star />
+          <Star testID={TestIds.MOVIE_RATING_STAR} />
           <Text style={styles.rating}>{`${vote_average}/10 IMDb`}</Text>
         </View>
         {type === 'horizontal' && (
@@ -36,7 +38,7 @@ const MovieCard = ({ movie, type = 'horizontal', genres }: MovieCardProps) => {
               key="genre-ids"
               keyExtractor={(item) => item.id.toString()}
               renderItem={({ item }) => (
-                <View style={{ marginRight: 3, marginBottom: 4 }}>
+                <View style={{ marginRight: 3, marginBottom: 4 }} testID={TestIds.MOVIE_GENRES}>
                   <Chip label={item.name} />
                 </View>
               )}
@@ -46,7 +48,9 @@ const MovieCard = ({ movie, type = 'horizontal', genres }: MovieCardProps) => {
         )}
       </View>
       <View style={styles.releaseDateContainer}>
-        <Text style={styles.releaseDate}>{new Date(release_date).getFullYear()}</Text>
+        <Text testID={TestIds.MOVIE_YEAR} style={styles.releaseDate}>
+          {new Date(release_date).getFullYear()}
+        </Text>
       </View>
     </View>
   );

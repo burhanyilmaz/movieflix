@@ -1,3 +1,4 @@
+import TestIds from 'helpers/TestIds';
 import React from 'react';
 import { Image, StyleSheet } from 'react-native';
 
@@ -7,7 +8,7 @@ type PosterProps = {
 };
 
 const Poster = ({ image, size = 'default' }: PosterProps) => (
-  <Image source={{ uri: image }} style={styles[size]} />
+  <Image source={{ uri: image }} style={styles[size]} testID={TestIds.POSTER_IMAGE} />
 );
 
 const styles = StyleSheet.create({

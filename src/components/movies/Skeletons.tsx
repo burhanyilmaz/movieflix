@@ -1,7 +1,7 @@
 import React from 'react';
 import SkeletonPlaceholder from 'react-native-skeleton-placeholder';
 
-export const VerticalMovieSkeleton = () => (
+export const HorizontalMovieSkeleton = () => (
   <SkeletonPlaceholder>
     <SkeletonPlaceholder.Item flexDirection="row" marginBottom={16}>
       <SkeletonPlaceholder.Item flexDirection="column">
@@ -26,9 +26,9 @@ export const VerticalMovieSkeleton = () => (
   </SkeletonPlaceholder>
 );
 
-export const HorizontalMovieSkeleton = () => (
+export const VerticalMovieSkeleton = () => (
   <SkeletonPlaceholder>
-    <SkeletonPlaceholder.Item flexDirection="column">
+    <SkeletonPlaceholder.Item flexDirection="column" marginLeft={16}>
       <SkeletonPlaceholder.Item flexDirection="row">
         <SkeletonPlaceholder.Item width={120} height={170} borderRadius={8} />
         <SkeletonPlaceholder.Item flexDirection="column" marginLeft={8}>

@@ -11,10 +11,10 @@ const CommonOptions: NativeStackNavigationOptions = {
   headerShown: false,
 };
 
-const MainNavigator = () => (
+const HomeNavigator = () => (
   <Stack.Navigator>
     <Stack.Screen name="Home" component={HomeScreen} options={CommonOptions} />
   </Stack.Navigator>
 );
 
-export default MainNavigator;
+export default HomeNavigator;
