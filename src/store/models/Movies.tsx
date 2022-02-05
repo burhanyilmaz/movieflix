@@ -6,7 +6,7 @@ import { RootModel } from '.';
 
 type MoviesInitialState = {
   movies: Movie[];
-  genres: string[];
+  genres: Genre[];
   searchResult: Movie[];
   favoriteMovies: Movie[];
   selectedMovieCast: Cast[];
@@ -22,7 +22,7 @@ const Movies = createModel<RootModel>()({
   } as MoviesInitialState,
   reducers: {
     setMovies: (state, payload: Movie[]) => ({ ...state, movies: payload }),
-    setGenres: (state, payload: string[]) => ({ ...state, genres: payload }),
+    setGenres: (state, payload: Genre[]) => ({ ...state, genres: payload }),
     setSearchResult: (state, payload: Movie[]) => ({ ...state, searchResult: payload }),
     setFavoriteMovies: (state, payload: Movie[]) => ({ ...state, favoriteMovies: payload }),
     setSelectedMovieCast: (state, payload: Cast[]) => ({ ...state, selectedMovieCast: payload }),
