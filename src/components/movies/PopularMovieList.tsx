@@ -2,14 +2,15 @@ import React, { memo, useCallback } from 'react';
 import MovieCard from 'components/movies/MovieCard';
 import { Text, View, FlatList, StyleSheet } from 'react-native';
 import { Genre, Movie } from 'store/types/MovieModelTypes';
-import { HorizontalMovieSkeleton } from './Skeletons';
+import { VerticalMovieSkeleton } from './Skeletons';
 
 type PopularMoviesProps = {
   movies: Movie[];
   genres: Genre[];
+  onPressMovie: (movie: Movie, genres: Genre[]) => void;
 };
 
-const PopularMovieList = ({ movies, genres }: PopularMoviesProps) => {
+const PopularMovieList = ({ movies, genres, onPressMovie }: PopularMoviesProps) => {
   const keyExtractor = (item: Movie) => item.id.toString();
 
   const RenderHeader = memo(() => (
@@ -24,11 +25,13 @@ const PopularMovieList = ({ movies, genres }: PopularMoviesProps) => {
   );
 
   const RenderItem = useCallback(
-    ({ item }) => <MovieCard movie={item} genres={processGenres(item.genre_ids)} />,
+    ({ item }) => (
+      <MovieCard movie={item} genres={processGenres(item.genre_ids)} onPress={onPressMovie} />
+    ),
     [],
   );
 
-  const RenderEmptyComponent = memo(() => <HorizontalMovieSkeleton />);
+  const RenderEmptyComponent = memo(() => <VerticalMovieSkeleton />);
 
   return (
     <FlatList
@@ -61,4 +64,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default PopularMovieList;
+export default memo(PopularMovieList);

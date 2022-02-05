@@ -71,3 +71,25 @@ export const VerticalMovieSkeleton = () => (
     </SkeletonPlaceholder.Item>
   </SkeletonPlaceholder>
 );
+
+export const CastSkeleton = () => (
+  <SkeletonPlaceholder>
+    <SkeletonPlaceholder.Item flexDirection="row" marginBottom={16}>
+      <SkeletonPlaceholder.Item flexDirection="column" marginRight={8}>
+        <SkeletonPlaceholder.Item width={120} height={150} borderRadius={8} />
+        <SkeletonPlaceholder.Item width={120} height={10} borderRadius={4} marginTop={8} />
+        <SkeletonPlaceholder.Item width={100} height={10} borderRadius={4} marginTop={8} />
+      </SkeletonPlaceholder.Item>
+      <SkeletonPlaceholder.Item flexDirection="column" marginRight={8}>
+        <SkeletonPlaceholder.Item width={120} height={150} borderRadius={8} />
+        <SkeletonPlaceholder.Item width={120} height={10} borderRadius={4} marginTop={8} />
+        <SkeletonPlaceholder.Item width={100} height={10} borderRadius={4} marginTop={8} />
+      </SkeletonPlaceholder.Item>
+      <SkeletonPlaceholder.Item flexDirection="column">
+        <SkeletonPlaceholder.Item width={120} height={150} borderRadius={8} />
+        <SkeletonPlaceholder.Item width={120} height={10} borderRadius={4} marginTop={8} />
+        <SkeletonPlaceholder.Item width={100} height={10} borderRadius={4} marginTop={8} />
+      </SkeletonPlaceholder.Item>
+    </SkeletonPlaceholder.Item>
+  </SkeletonPlaceholder>
+);

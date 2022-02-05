@@ -1,35 +1,41 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import Spacer from 'components/core/Spacer';
 import Poster from 'components/movies/Poster';
 import { Endpoints } from 'helpers/constants';
-import { Text, View, StyleSheet, FlatList } from 'react-native';
-import { Genre, Movie } from 'stores/types/MovieModelTypes';
+import { Text, View, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
+import { Genre, Movie } from 'store/types/MovieModelTypes';
 import Chip from 'components/core/Chip';
-import { Star } from 'components/core/icons';
 import TestIds from 'helpers/TestIds';
+import IMDbRating from './IMDbRating';
 
 type MovieCardProps = {
   movie: Movie;
   testID?: string;
   genres?: Genre[];
   type?: 'vertical' | 'horizontal';
+  onPress?: (movie: Movie, genres?: Genre[]) => void;
 };
 
-const MovieCard = ({ movie, type = 'horizontal', genres, testID }: MovieCardProps) => {
+const MovieCard = ({ movie, type = 'horizontal', genres, testID, onPress }: MovieCardProps) => {
   const { title, poster_path, vote_average, release_date } = movie;
+  const posterUrl = useCallback(() => Endpoints.image(poster_path), [poster_path]);
+  const handlePress = () => {
+    if (onPress) {
+      onPress(movie, genres);
+    }
+  };
 
   return (
-    <View style={styles[type]} testID={testID}>
-      <Poster
-        image={Endpoints.image(poster_path)}
-        size={type === 'horizontal' ? 'default' : 'medium'}
-      />
+    <TouchableOpacity
+      testID={testID}
+      style={styles[type]}
+      activeOpacity={0.6}
+      onPress={handlePress}
+    >
+      <Poster image={posterUrl()} size={type === 'horizontal' ? 'default' : 'medium'} />
       <View style={{ marginLeft: type === 'horizontal' ? 10 : 0 }}>
         <Text style={{ ...styles.title, marginTop: type === 'vertical' ? 12 : 0 }}>{title}</Text>
-        <View style={styles.ratingContainer}>
-          <Star testID={TestIds.MOVIE_RATING_STAR} />
-          <Text style={styles.rating}>{`${vote_average}/10 IMDb`}</Text>
-        </View>
+        <IMDbRating rating={vote_average} />
         {type === 'horizontal' && (
           <>
             <FlatList
@@ -52,7 +58,7 @@ const MovieCard = ({ movie, type = 'horizontal', genres, testID }: MovieCardProp
           {new Date(release_date).getFullYear()}
         </Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

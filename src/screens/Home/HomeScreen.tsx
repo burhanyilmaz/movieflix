@@ -1,12 +1,17 @@
-import React, { memo, useEffect } from 'react';
+import React, { memo, useCallback, useEffect } from 'react';
 import { View, StyleSheet, FlatList, StatusBar } from 'react-native';
 import { useSelector } from 'react-redux';
 import { dispatch, RootState } from 'store';
 import PopularMovieList from 'components/movies/PopularMovieList';
 import UpcomingMovieList from 'components/movies/UpcomingMovieList';
 import Spacer from 'components/core/Spacer';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { HomeNavigatorParamList } from 'navigators/HomeNavigator';
+import { Genre, Movie } from 'store/types/MovieModelTypes';
 
-const HomeScreen = () => {
+type Props = NativeStackScreenProps<HomeNavigatorParamList, 'Home'>;
+
+const HomeScreen = ({ navigation }: Props) => {
   const { movies, genres, upcomingMovies } = useSelector((state: RootState) => state.movies);
 
   useEffect(() => {
@@ -15,14 +20,38 @@ const HomeScreen = () => {
     dispatch.movies.getUpcomingMovies();
   }, []);
 
-  const RenderUpcoming = memo(() => (
-    <View>
-      <Spacer size={StatusBar.currentHeight || 36} />
-      <UpcomingMovieList movies={upcomingMovies} />
-    </View>
-  ));
+  const navigateToMoviesDetail = (movie: Movie, _genres: Genre[]) => {
+    navigation.navigate('MovieDetail', { movie, genres: _genres });
+  };
 
-  const RenderPopular = memo(() => <PopularMovieList movies={movies} genres={genres} />);
+  const RenderUpcoming = useCallback(
+    () => (
+      <View>
+        <Spacer size={StatusBar.currentHeight || 36} />
+        <UpcomingMovieList
+          genres={genres}
+          movies={upcomingMovies}
+          onPressMovie={(_movies, _genres) => {
+            navigateToMoviesDetail(_movies, _genres);
+          }}
+        />
+      </View>
+    ),
+    [upcomingMovies.length, genres.length],
+  );
+
+  const RenderPopular = useCallback(
+    () => (
+      <PopularMovieList
+        movies={movies}
+        genres={genres}
+        onPressMovie={(_movies, _genres) => {
+          navigateToMoviesDetail(_movies, _genres);
+        }}
+      />
+    ),
+    [movies.length, genres.length],
+  );
 
   return (
     <>
@@ -30,6 +59,7 @@ const HomeScreen = () => {
       <View style={styles.container}>
         <FlatList
           data={[]}
+          extraData={[]}
           renderItem={() => null}
           ListFooterComponent={RenderPopular}
           ListHeaderComponent={RenderUpcoming}
@@ -50,4 +80,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomeScreen;
+export default memo(HomeScreen);
