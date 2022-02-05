@@ -1,14 +1,21 @@
 import React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
-import { createNativeStackNavigator } from '@react-navigation/native-stack';
-import TestScreen from 'screens/Test/TestScreen';
+import {
+  createNativeStackNavigator,
+  NativeStackNavigationOptions,
+} from '@react-navigation/native-stack';
+import HomeScreen from 'screens/Home/HomeScreen';
 
 const Stack = createNativeStackNavigator();
+
+const CommonOptions: NativeStackNavigationOptions = {
+  headerShown: false,
+};
 
 const MainNavigator = () => (
   <NavigationContainer>
     <Stack.Navigator>
-      <Stack.Screen name="Test" component={TestScreen} options={{ title: 'Test Screen' }} />
+      <Stack.Screen name="Home" component={HomeScreen} options={CommonOptions} />
     </Stack.Navigator>
   </NavigationContainer>
 );

@@ -10,6 +10,7 @@ export const Endpoints = {
   cast: (movieId: number) => `${ApiBaseUrl}/movie/${movieId}/credits?api_key=${ApiKey}`,
   upcomingMovies: (page?: number) =>
     `${ApiBaseUrl}/movie/upcoming?api_key=${ApiKey}&language=en-US&page=${page || 1}`,
+  image: (image: string) => `${ImageBaseUrl}/${image}`,
 };
 
 export default {};
