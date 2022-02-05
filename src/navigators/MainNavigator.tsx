@@ -1,22 +1,37 @@
 import React from 'react';
+import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
-import {
-  createNativeStackNavigator,
-  NativeStackNavigationOptions,
-} from '@react-navigation/native-stack';
-import HomeScreen from 'screens/Home/HomeScreen';
+import { getBottomBarOptions } from 'utils';
+import { TabBarIcons } from 'components/core/icons';
+import HomeNavigator from './HomeNavigator';
 
-const Stack = createNativeStackNavigator();
-
-const CommonOptions: NativeStackNavigationOptions = {
-  headerShown: false,
+export type MainNavigatorParamList = {
+  HomeNavigator: undefined;
+  SearchNavigator: undefined;
+  StarredNavigator: undefined;
 };
+
+const Tab = createBottomTabNavigator<MainNavigatorParamList>();
 
 const MainNavigator = () => (
   <NavigationContainer>
-    <Stack.Navigator>
-      <Stack.Screen name="Home" component={HomeScreen} options={CommonOptions} />
-    </Stack.Navigator>
+    <Tab.Navigator>
+      <Tab.Screen
+        name="HomeNavigator"
+        component={HomeNavigator}
+        options={getBottomBarOptions({ title: 'Home', Icon: TabBarIcons.Home })}
+      />
+      <Tab.Screen
+        name="SearchNavigator"
+        component={HomeNavigator}
+        options={getBottomBarOptions({ title: 'Search', Icon: TabBarIcons.Search })}
+      />
+      <Tab.Screen
+        name="StarredNavigator"
+        component={HomeNavigator}
+        options={getBottomBarOptions({ title: 'Starred', Icon: TabBarIcons.Favorite })}
+      />
+    </Tab.Navigator>
   </NavigationContainer>
 );
 
