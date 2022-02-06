@@ -23,25 +23,23 @@ If you have questions, please feel free to ask.
 
 ## Screenshots
 
-### Home
-*           | *
+Home Skeleton          | Home 
 :-------------------------:|:-------------------------:
-<img src="readmeImages/ss/home-skeleton.png" alt="drawing" width="250"/>  |  <img src="readmeImages/ss/home.png" alt="drawing" width="250"/>
+<img src="readmeImages/ss/home-skeleton.png" alt="drawing" width="300"/>  |  <img src="readmeImages/ss/home.png" alt="drawing" width="300"/>
 
 <br/>
 <br/>
 
-### Movie Details
-*           | *
+Movie Details Cast Skeleton          | Movie Details
 :-------------------------:|:-------------------------:
-<img src="readmeImages/ss/cast-skeleton.png" alt="drawing" width="250"/> |<img src="readmeImages/ss/movie-details.png" alt="drawing" width="250"/>
+<img src="readmeImages/ss/cast-skeleton.png" alt="drawing" width="300"/> |<img src="readmeImages/ss/movie-details.png" alt="drawing" width="300"/>
 
 
 ### Internet Connection
 No Internet           | Connected Again
 :-------------------------:|:-------------------------:
-<img src="readmeImages/ss/no-internet.png" alt="drawing" width="250"/> | <img src="readmeImages/ss/connected-internet.png" alt="drawing" width="250"/>
+<img src="readmeImages/ss/no-internet.png" alt="drawing" width="300"/> | <img src="readmeImages/ss/connected-internet.png" alt="drawing" width="300"/>
 
 Search          | Favorite Movies
 :-------------------------:|:-------------------------:
-<img src="readmeImages/ss/search.png" alt="drawing" width="250"/> | <img src="readmeImages/ss/favorite-movies.png" alt="drawing" width="250"/> 
+<img src="readmeImages/ss/search.png" alt="drawing" width="300"/> | <img src="readmeImages/ss/favorite-movies.png" alt="drawing" width="300"/> 
