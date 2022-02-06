@@ -4,8 +4,7 @@ import {
   NativeStackNavigationOptions,
 } from '@react-navigation/native-stack';
 import { Genre, Movie } from 'store/types/MovieModelTypes';
-import MovieDetails from 'screens/Home/MovieDetails';
-import FavoriteScreen from 'screens/Favorite/FavoriteScreen';
+import { MovieDetails, FavoriteScreen } from 'screens';
 
 export type FavoriteNavigatorParamList = {
   Favorite: undefined;

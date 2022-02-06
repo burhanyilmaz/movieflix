@@ -1,5 +1,5 @@
 import React, { memo, useCallback } from 'react';
-import MovieCard from 'components/movies/MovieCard';
+import MovieCard from 'components/screenBase/movies/MovieCard';
 import { Text, View, StyleSheet, FlatList } from 'react-native';
 import { Genre, Movie } from 'store/types/MovieModelTypes';
 import { HorizontalMovieSkeleton } from './Skeletons';

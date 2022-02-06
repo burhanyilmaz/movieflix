@@ -3,7 +3,7 @@ import React from 'react';
 import { render } from '@testing-library/react-native';
 import TestIds from 'helpers/TestIds';
 import { MockData } from 'tests/data';
-import VerticalMovieList from 'components/movies/VerticalMovieList';
+import VerticalMovieList from 'components/screenBase/movies/VerticalMovieList';
 
 describe('Popular Movie List', () => {
   it('Popular Movie List  renders correctly', () => {

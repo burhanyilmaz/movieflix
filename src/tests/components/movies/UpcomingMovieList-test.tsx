@@ -3,7 +3,7 @@ import React from 'react';
 import { render } from '@testing-library/react-native';
 import TestIds from 'helpers/TestIds';
 import { MockData } from 'tests/data';
-import UpcomingMovieList from 'components/movies/UpcomingMovieList';
+import UpcomingMovieList from 'components/screenBase/movies/UpcomingMovieList';
 
 describe('Upcoming Movie List', () => {
   it('Upcoming Movie List  renders correctly', () => {

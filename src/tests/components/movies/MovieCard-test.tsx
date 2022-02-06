@@ -2,7 +2,7 @@ import 'react-native';
 import React from 'react';
 import { render } from '@testing-library/react-native';
 import TestIds from 'helpers/TestIds';
-import MovieCard from 'components/movies/MovieCard';
+import MovieCard from 'components/screenBase/movies/MovieCard';
 import { MockData } from 'tests/data';
 
 describe('Movie Card', () => {

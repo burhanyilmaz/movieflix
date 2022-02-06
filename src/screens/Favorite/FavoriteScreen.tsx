@@ -1,8 +1,7 @@
-import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import EmptyList from 'components/common/EmptyList';
-import VerticalMovieList from 'components/movies/VerticalMovieList';
-import { FavoriteNavigatorParamList } from 'navigators/FavoriteNavigator';
 import React, { useCallback } from 'react';
+import { NativeStackScreenProps } from '@react-navigation/native-stack';
+import { EmptyList, VerticalMovieList } from 'components';
+import { FavoriteNavigatorParamList } from 'navigators/FavoriteNavigator';
 import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useSelector } from 'react-redux';

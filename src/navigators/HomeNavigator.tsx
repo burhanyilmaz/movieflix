@@ -3,9 +3,8 @@ import {
   createNativeStackNavigator,
   NativeStackNavigationOptions,
 } from '@react-navigation/native-stack';
-import HomeScreen from 'screens/Home/HomeScreen';
+import { HomeScreen, MovieDetails } from 'screens';
 import { Genre, Movie } from 'store/types/MovieModelTypes';
-import MovieDetails from 'screens/Home/MovieDetails';
 
 const Stack = createNativeStackNavigator();
 

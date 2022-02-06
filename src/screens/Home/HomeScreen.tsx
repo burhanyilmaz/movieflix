@@ -2,13 +2,10 @@ import React, { memo, useCallback, useEffect } from 'react';
 import { View, StyleSheet, FlatList, StatusBar } from 'react-native';
 import { useSelector } from 'react-redux';
 import { dispatch, RootState } from 'store';
-import VerticalMovieList from 'components/movies/VerticalMovieList';
-import UpcomingMovieList from 'components/movies/UpcomingMovieList';
-import Spacer from 'components/core/Spacer';
+import { VerticalMovieList, UpcomingMovieList, Spacer, VerticalMovieSkeleton } from 'components';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { HomeNavigatorParamList } from 'navigators/HomeNavigator';
 import { Genre, Movie } from 'store/types/MovieModelTypes';
-import { VerticalMovieSkeleton } from 'components/movies/Skeletons';
 
 type Props = NativeStackScreenProps<HomeNavigatorParamList, 'Home'>;
 

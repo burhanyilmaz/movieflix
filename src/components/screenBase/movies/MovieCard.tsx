@@ -1,6 +1,6 @@
 import React, { useCallback } from 'react';
 import Spacer from 'components/core/Spacer';
-import Poster from 'components/movies/Poster';
+import Poster from 'components/screenBase/movies/Poster';
 import { Endpoints } from 'helpers/constants';
 import { Text, View, StyleSheet, FlatList, TouchableOpacity } from 'react-native';
 import { Genre, Movie } from 'store/types/MovieModelTypes';

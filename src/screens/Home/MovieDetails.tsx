@@ -1,11 +1,6 @@
 import React, { memo, useCallback, useEffect } from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import Spacer from 'components/core/Spacer';
-import CastList from 'components/movieDetails/CastList';
-import GenreList from 'components/movieDetails/GenreList';
-import MovieInfoItem from 'components/movieDetails/MovieInfoItem';
-import MovieHeader from 'components/movieDetails/MovieHeader';
-import IMDbRating from 'components/movies/IMDbRating';
+import { Spacer, CastList, GenreList, MovieInfoItem, MovieHeader, IMDbRating } from 'components';
 import { Endpoints } from 'helpers/constants';
 import { HomeNavigatorParamList } from 'navigators/HomeNavigator';
 import { View, Text, StatusBar, StyleSheet, FlatList, Pressable } from 'react-native';
@@ -53,7 +48,7 @@ const MovieDetails = ({
   );
 
   return (
-    <View style={{ flex: 1 }}>
+    <View style={styles.container}>
       <StatusBar barStyle="light-content" />
       <MovieHeaderCb />
       <View style={styles.whiteArea} />
@@ -112,6 +107,7 @@ const MovieDetails = ({
 };
 
 const styles = StyleSheet.create({
+  container: { flex: 1, backgroundColor: 'white' },
   whiteArea: {
     height: 20,
     width: '100%',

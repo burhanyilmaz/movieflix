@@ -1,8 +1,8 @@
 import React, { memo, useCallback } from 'react';
-import MovieCard from 'components/movies/MovieCard';
+import MovieCard from 'components/screenBase/movies/MovieCard';
 import { Text, View, FlatList, StyleSheet } from 'react-native';
 import { Genre, Movie } from 'store/types/MovieModelTypes';
-import { VerticalMovieSkeleton } from 'components/movies/Skeletons';
+import { VerticalMovieSkeleton } from 'components/screenBase/movies/Skeletons';
 import EmptyList from 'components/common/EmptyList';
 
 type PopularMoviesProps = {

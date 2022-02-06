@@ -4,8 +4,7 @@ import {
   NativeStackNavigationOptions,
 } from '@react-navigation/native-stack';
 import { Genre, Movie } from 'store/types/MovieModelTypes';
-import SearchScreen from 'screens/Search/SearchScreen';
-import MovieDetails from 'screens/Home/MovieDetails';
+import { SearchScreen, MovieDetails } from 'screens';
 
 export type SearchNavigatorParamList = {
   Search: undefined;

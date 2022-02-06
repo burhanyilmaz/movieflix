@@ -2,7 +2,7 @@ import 'react-native';
 import React from 'react';
 import { render } from '@testing-library/react-native';
 import TestIds from 'helpers/TestIds';
-import Poster from 'components/movies/Poster';
+import Poster from 'components/screenBase/movies/Poster';
 
 it('Poster renders correctly', () => {
   const { getByTestId, toJSON } = render(<Poster image="some_url" />);

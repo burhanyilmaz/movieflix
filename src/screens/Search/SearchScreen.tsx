@@ -1,9 +1,8 @@
+import React, { useEffect, useState } from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import SearchInput from 'components/search/SearchInput';
-import SearchResultMovies from 'components/search/SearchResultMovies';
+import { SearchInput, SearchResultMovies } from 'components';
 import useDebounce from 'hooks/useDebounce';
 import { SearchNavigatorParamList } from 'navigators/SearchNavigator';
-import React, { useEffect, useState } from 'react';
 import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useSelector } from 'react-redux';

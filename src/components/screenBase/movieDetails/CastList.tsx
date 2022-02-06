@@ -1,5 +1,5 @@
 import React, { memo } from 'react';
-import { CastSkeleton } from 'components/movies/Skeletons';
+import { CastSkeleton } from 'components/screenBase/movies/Skeletons';
 import { Endpoints } from 'helpers/constants';
 import { FlatList, Image, StyleSheet, Text, View } from 'react-native';
 import { Cast } from 'store/types/MovieModelTypes';
