@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { getBottomBarOptions } from 'utils';
@@ -6,6 +6,7 @@ import { TabBarIcons } from 'components/core/icons';
 import { View } from 'react-native';
 import Toast from 'react-native-toast-message';
 import useNetInfo from 'hooks/useNetInfo';
+import RNBootSplash from 'react-native-bootsplash';
 import HomeNavigator from './HomeNavigator';
 import SearchNavigator from './SearchNavigator';
 import FavoriteNavigator from './FavoriteNavigator';
@@ -20,6 +21,10 @@ const Tab = createBottomTabNavigator<MainNavigatorParamList>();
 
 const MainNavigator = () => {
   useNetInfo(Toast);
+
+  useEffect(() => {
+    RNBootSplash.hide({ fade: true });
+  }, []);
 
   return (
     <View style={{ height: '100%', backgroundColor: 'white', zIndex: 10, position: 'relative' }}>

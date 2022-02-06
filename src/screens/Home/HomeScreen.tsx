@@ -46,6 +46,7 @@ const HomeScreen = ({ navigation }: Props) => {
       <VerticalMovieList
         movies={movies}
         genres={genres}
+        title="Popular"
         RenderEmpty={VerticalMovieSkeleton}
         onPressMovie={(_movies, _genres) => {
           navigateToMoviesDetail(_movies, _genres);
