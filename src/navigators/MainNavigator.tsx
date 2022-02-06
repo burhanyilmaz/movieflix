@@ -4,6 +4,7 @@ import { NavigationContainer } from '@react-navigation/native';
 import { getBottomBarOptions } from 'utils';
 import { TabBarIcons } from 'components/core/icons';
 import HomeNavigator from './HomeNavigator';
+import SearchNavigator from './SearchNavigator';
 
 export type MainNavigatorParamList = {
   HomeNavigator: undefined;
@@ -23,7 +24,7 @@ const MainNavigator = () => (
       />
       <Tab.Screen
         name="SearchNavigator"
-        component={HomeNavigator}
+        component={SearchNavigator}
         options={getBottomBarOptions({ title: 'Search', Icon: TabBarIcons.Search })}
       />
       <Tab.Screen

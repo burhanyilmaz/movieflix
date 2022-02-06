@@ -12,6 +12,7 @@ import { View, Text, StatusBar, StyleSheet, FlatList, Pressable } from 'react-na
 import { useSelector } from 'react-redux';
 import { dispatch, RootState } from 'store';
 import { Icons } from 'components/core/icons';
+import Languages from 'data/Languages';
 
 type Props = NativeStackScreenProps<HomeNavigatorParamList, 'MovieDetail'>;
 
@@ -21,7 +22,16 @@ const MovieDetails = ({
     params: { genres, movie },
   },
 }: Props) => {
-  const { title, vote_average, backdrop_path, overview, id, release_date, vote_count } = movie;
+  const {
+    title,
+    vote_average,
+    backdrop_path,
+    overview,
+    id,
+    release_date,
+    vote_count,
+    original_language,
+  } = movie;
   const cast = useSelector((state: RootState) => state.movies.selectedMovieCast);
 
   useEffect(() => {
@@ -58,7 +68,10 @@ const MovieDetails = ({
             <IMDbRating rating={vote_average} />
             <GenreList genres={genres} />
             <View style={styles.movieInfoContainer}>
-              <MovieInfoItem label="Language" value="English" />
+              <MovieInfoItem
+                label="Language"
+                value={Languages?.[original_language]?.name || 'English'}
+              />
               <MovieInfoItem
                 label="Release Date"
                 value={new Date(release_date).getFullYear().toString()}
