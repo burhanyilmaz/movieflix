@@ -37,8 +37,8 @@ describe('[count] model', () => {
     setSearchResult(movies);
     expect(movies.length).toEqual(getState('searchResult').length);
 
-    setSelectedMovieCast(casts);
-    expect(casts.length).toEqual(getState('selectedMovieCast').length);
+    setSelectedMovieCast({ 1: casts });
+    expect(casts.length).toEqual(getState('selectedMovieCast')?.[1]?.length);
   });
 
   it('effects set state correctly on movies model ', async () => {
@@ -56,6 +56,6 @@ describe('[count] model', () => {
 
     fetchMock.mockIf(Endpoints.cast(1234), JSON.stringify({ cast: casts.slice(0, 3) }));
     await store.dispatch.movies.getCast(1234);
-    expect(getState('selectedMovieCast').length).toEqual(casts.slice(0, 3).length);
+    expect(getState('selectedMovieCast')?.[1234].length).toEqual(casts.slice(0, 3).length);
   });
 });

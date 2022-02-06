@@ -2,6 +2,7 @@ import React, { memo, useCallback } from 'react';
 import MovieCard from 'components/screenBase/movies/MovieCard';
 import { Text, View, StyleSheet, FlatList } from 'react-native';
 import { Genre, Movie } from 'store/types/MovieModelTypes';
+import TestIds from 'helpers/TestIds';
 import { HorizontalMovieSkeleton } from './Skeletons';
 
 type UpcomingMoviesProps = {
@@ -29,6 +30,8 @@ const UpcomingMovieList = ({ movies, onPressMovie, genres }: UpcomingMoviesProps
       <MovieCard
         type="vertical"
         movie={item}
+        testID={TestIds.UPCOMING_MOVIE_CARD}
+        genres={processGenres(item.genre_ids)}
         onPress={(_movie) => onPressMovie(_movie, processGenres(item.genre_ids))}
       />
     ),

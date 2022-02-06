@@ -82,8 +82,7 @@
   },
   "jest": {
     "testMatch": [
-      "**/tests/**/*[-test].[jt]s?(x)",
-      "**/?(*.)+(spec|test).[jt]s?(x)"
+      "**/tests/**/*[test].[jt]s?(x)"
     ],
     "testEnvironment": "jsdom",
     "preset": "react-native",

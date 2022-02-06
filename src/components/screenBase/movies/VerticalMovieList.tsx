@@ -3,6 +3,7 @@ import React, { memo, useCallback } from 'react';
 import MovieCard from 'components/screenBase/movies/MovieCard';
 import { Text, View, FlatList, StyleSheet } from 'react-native';
 import { Genre, Movie } from 'store/types/MovieModelTypes';
+import TestIds from 'helpers/TestIds';
 
 type PopularMoviesProps = {
   movies: Movie[];
@@ -36,7 +37,12 @@ const VerticalMovieList = ({
 
   const RenderItem = useCallback(
     ({ item }) => (
-      <MovieCard movie={item} genres={processGenres(item.genre_ids)} onPress={onPressMovie} />
+      <MovieCard
+        movie={item}
+        onPress={onPressMovie}
+        testID={TestIds.POPULAR_MOVIE_CARD}
+        genres={processGenres(item.genre_ids)}
+      />
     ),
     [],
   );

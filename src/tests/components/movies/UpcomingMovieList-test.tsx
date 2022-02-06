@@ -7,8 +7,14 @@ import UpcomingMovieList from 'components/screenBase/movies/UpcomingMovieList';
 
 describe('Upcoming Movie List', () => {
   it('Upcoming Movie List  renders correctly', () => {
+    const onPress = jest.fn();
+
     const { getByText, queryAllByTestId, queryAllByText } = render(
-      <UpcomingMovieList movies={MockData.movies.slice(0, 5)} />,
+      <UpcomingMovieList
+        movies={MockData.movies.slice(0, 5)}
+        genres={MockData.genres}
+        onPressMovie={onPress}
+      />,
     );
 
     MockData.movies.slice(0, 5).forEach((movie) => {
