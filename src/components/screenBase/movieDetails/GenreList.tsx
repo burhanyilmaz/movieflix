@@ -9,7 +9,7 @@ const GenreList = ({ genres }: { genres: Genre[] }) => {
       data={genres}
       numColumns={4}
       key="genre-ids"
-      keyExtractor={(item) => item.id.toString()}
+      keyExtractor={(item) => `${item.id.toString()}genre`}
       renderItem={({ item }) => (
         <View style={{ marginRight: 3, marginBottom: 4 }}>
           <Chip label={item.name} />

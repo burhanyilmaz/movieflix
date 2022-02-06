@@ -12,7 +12,7 @@ const CastList = ({ cast }: { cast: Cast[] }) => {
       data={cast}
       ListEmptyComponent={CastSkeleton}
       showsHorizontalScrollIndicator={false}
-      keyExtractor={(item) => item.id.toString()}
+      keyExtractor={(item) => `${item.id.toString()}cast`}
       renderItem={({ item }) => {
         const { profile_path, original_name } = item;
 
