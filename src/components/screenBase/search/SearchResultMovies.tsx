@@ -4,6 +4,7 @@ import { Text, View, FlatList, StyleSheet } from 'react-native';
 import { Genre, Movie } from 'store/types/MovieModelTypes';
 import { VerticalMovieSkeleton } from 'components/screenBase/movies/Skeletons';
 import EmptyList from 'components/common/EmptyList';
+import TestIds from 'helpers/TestIds';
 
 type PopularMoviesProps = {
   movies: Movie[];
@@ -47,7 +48,12 @@ const SearchResultMovies = ({
 
   const RenderItem = useCallback(
     ({ item }) => (
-      <MovieCard movie={item} genres={processGenres(item.genre_ids)} onPress={onPressMovie} />
+      <MovieCard
+        movie={item}
+        onPress={onPressMovie}
+        testID={TestIds.SEARCH_MOVIE_CARD}
+        genres={processGenres(item.genre_ids)}
+      />
     ),
     [],
   );
