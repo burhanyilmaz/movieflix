@@ -1,23 +1,33 @@
+/* global JSX */
 import React, { memo, useCallback } from 'react';
 import MovieCard from 'components/movies/MovieCard';
 import { Text, View, FlatList, StyleSheet } from 'react-native';
 import { Genre, Movie } from 'store/types/MovieModelTypes';
-import { VerticalMovieSkeleton } from './Skeletons';
 
 type PopularMoviesProps = {
   movies: Movie[];
   genres: Genre[];
+  title?: string;
+  RenderEmpty: () => JSX.Element;
   onPressMovie: (movie: Movie, genres: Genre[]) => void;
 };
 
-const PopularMovieList = ({ movies, genres, onPressMovie }: PopularMoviesProps) => {
+const VerticalMovieList = ({
+  movies,
+  genres,
+  onPressMovie,
+  title,
+  RenderEmpty,
+}: PopularMoviesProps) => {
   const keyExtractor = (item: Movie) => item.id.toString();
 
-  const RenderHeader = memo(() => (
-    <View style={styles.header}>
-      <Text style={styles.headerTitle}>Popular</Text>
-    </View>
-  ));
+  const RenderHeader = memo(() =>
+    title ? (
+      <View style={styles.header}>
+        <Text style={styles.headerTitle}>{title}</Text>
+      </View>
+    ) : null,
+  );
 
   const processGenres = useCallback(
     (genre_ids) => genres?.filter((genre) => genre_ids.includes(genre.id)),
@@ -31,7 +41,13 @@ const PopularMovieList = ({ movies, genres, onPressMovie }: PopularMoviesProps) 
     [],
   );
 
-  const RenderEmptyComponent = memo(() => <VerticalMovieSkeleton />);
+  const RenderEmptyComponent = memo(() => {
+    if (RenderEmpty) {
+      return <RenderEmpty />;
+    }
+
+    return null;
+  });
 
   return (
     <FlatList
@@ -64,4 +80,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default memo(PopularMovieList);
+export default memo(VerticalMovieList);

@@ -3,6 +3,7 @@ import MovieCard from 'components/movies/MovieCard';
 import { Text, View, FlatList, StyleSheet } from 'react-native';
 import { Genre, Movie } from 'store/types/MovieModelTypes';
 import { VerticalMovieSkeleton } from 'components/movies/Skeletons';
+import EmptyList from 'components/common/EmptyList';
 
 type PopularMoviesProps = {
   movies: Movie[];
@@ -32,9 +33,7 @@ const SearchResultMovies = ({
 
     if (!loading && movies.length === 0 && !searchTerm) {
       return (
-        <View style={styles.header}>
-          <Text style={styles.noSearchTerm}>You can search movie or show.</Text>
-        </View>
+        <EmptyList show subtitle="You can search movie or show" title="Here is movie search area" />
       );
     }
 

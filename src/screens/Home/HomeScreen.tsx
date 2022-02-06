@@ -2,12 +2,13 @@ import React, { memo, useCallback, useEffect } from 'react';
 import { View, StyleSheet, FlatList, StatusBar } from 'react-native';
 import { useSelector } from 'react-redux';
 import { dispatch, RootState } from 'store';
-import PopularMovieList from 'components/movies/PopularMovieList';
+import VerticalMovieList from 'components/movies/VerticalMovieList';
 import UpcomingMovieList from 'components/movies/UpcomingMovieList';
 import Spacer from 'components/core/Spacer';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import { HomeNavigatorParamList } from 'navigators/HomeNavigator';
 import { Genre, Movie } from 'store/types/MovieModelTypes';
+import { VerticalMovieSkeleton } from 'components/movies/Skeletons';
 
 type Props = NativeStackScreenProps<HomeNavigatorParamList, 'Home'>;
 
@@ -42,9 +43,10 @@ const HomeScreen = ({ navigation }: Props) => {
 
   const RenderPopular = useCallback(
     () => (
-      <PopularMovieList
+      <VerticalMovieList
         movies={movies}
         genres={genres}
+        RenderEmpty={VerticalMovieSkeleton}
         onPressMovie={(_movies, _genres) => {
           navigateToMoviesDetail(_movies, _genres);
         }}

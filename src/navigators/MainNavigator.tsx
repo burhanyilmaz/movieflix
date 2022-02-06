@@ -5,11 +5,12 @@ import { getBottomBarOptions } from 'utils';
 import { TabBarIcons } from 'components/core/icons';
 import HomeNavigator from './HomeNavigator';
 import SearchNavigator from './SearchNavigator';
+import FavoriteNavigator from './FavoriteNavigator';
 
 export type MainNavigatorParamList = {
   HomeNavigator: undefined;
   SearchNavigator: undefined;
-  StarredNavigator: undefined;
+  FavoriteNavigator: undefined;
 };
 
 const Tab = createBottomTabNavigator<MainNavigatorParamList>();
@@ -28,8 +29,8 @@ const MainNavigator = () => (
         options={getBottomBarOptions({ title: 'Search', Icon: TabBarIcons.Search })}
       />
       <Tab.Screen
-        name="StarredNavigator"
-        component={HomeNavigator}
+        name="FavoriteNavigator"
+        component={FavoriteNavigator}
         options={getBottomBarOptions({ title: 'Starred', Icon: TabBarIcons.Favorite })}
       />
     </Tab.Navigator>

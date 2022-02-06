@@ -10,15 +10,16 @@ import IMDbRating from './IMDbRating';
 
 type MovieCardProps = {
   movie: Movie;
+  genres: Genre[];
   testID?: string;
-  genres?: Genre[];
   type?: 'vertical' | 'horizontal';
-  onPress?: (movie: Movie, genres?: Genre[]) => void;
+  onPress: (movie: Movie, genres?: Genre[]) => void;
 };
 
 const MovieCard = ({ movie, type = 'horizontal', genres, testID, onPress }: MovieCardProps) => {
   const { title, poster_path, vote_average, release_date } = movie;
   const posterUrl = useCallback(() => Endpoints.image(poster_path), [poster_path]);
+
   const handlePress = () => {
     if (onPress) {
       onPress(movie, genres);

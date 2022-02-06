@@ -33,6 +33,8 @@ const MovieDetails = ({
     original_language,
   } = movie;
   const cast = useSelector((state: RootState) => state.movies.selectedMovieCast);
+  const favoriteMovies = useSelector((state: RootState) => state.storedData.favoriteMovies);
+  const isFavorite = favoriteMovies?.filter((movie_) => movie_?.id === id).length > 0;
 
   useEffect(() => {
     dispatch.movies.getCast(id);
@@ -61,8 +63,16 @@ const MovieDetails = ({
               }}
             >
               <Text style={styles.movieTitle}>{title}</Text>
-              <Pressable>
-                <Icons.Favorite color="#9C9C9C" />
+              <Pressable
+                onPress={() => dispatch.storedData.setFavoriteMovies(movie)}
+                hitSlop={{
+                  top: 20,
+                  bottom: 20,
+                  left: 20,
+                  right: 20,
+                }}
+              >
+                <Icons.Favorite color={isFavorite ? 'red' : '#9C9C9C'} />
               </Pressable>
             </View>
             <IMDbRating rating={vote_average} />

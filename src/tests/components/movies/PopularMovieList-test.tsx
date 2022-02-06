@@ -3,12 +3,16 @@ import React from 'react';
 import { render } from '@testing-library/react-native';
 import TestIds from 'helpers/TestIds';
 import { MockData } from 'tests/data';
-import PopularMovieList from 'components/movies/PopularMovieList';
+import VerticalMovieList from 'components/movies/VerticalMovieList';
 
 describe('Popular Movie List', () => {
   it('Popular Movie List  renders correctly', () => {
     const { getByText, queryAllByTestId, queryAllByText } = render(
-      <PopularMovieList movies={MockData.movies.slice(0, 5)} genres={MockData.genres} />,
+      <VerticalMovieList
+        RenderEmpty={null}
+        movies={MockData.movies.slice(0, 5)}
+        genres={MockData.genres}
+      />,
     );
 
     MockData.movies.slice(0, 5).forEach((movie) => {

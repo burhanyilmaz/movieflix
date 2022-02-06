@@ -1,5 +1,4 @@
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
-import PopularMovieList from 'components/movies/PopularMovieList';
 import SearchInput from 'components/search/SearchInput';
 import SearchResultMovies from 'components/search/SearchResultMovies';
 import useDebounce from 'hooks/useDebounce';
@@ -9,7 +8,7 @@ import { StyleSheet, View } from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import { useSelector } from 'react-redux';
 import { dispatch, RootState } from 'store';
-import { Movie } from 'store/types/MovieModelTypes';
+import { Genre, Movie } from 'store/types/MovieModelTypes';
 
 type Props = NativeStackScreenProps<SearchNavigatorParamList, 'Search'>;
 
@@ -26,14 +25,16 @@ const SearchScreen = ({ navigation }: Props) => {
     }
   }, [debouncedSearchTerm]);
 
-  const navigateToMoviesDetail = (movie: Movie) => {
-    navigation.navigate('MovieDetail', { movie, genres });
+  const navigateToMoviesDetail = (movie: Movie, _genres: Genre[]) => {
+    navigation.navigate('MovieDetail', { movie, genres: _genres });
   };
 
   return (
     <SafeAreaView style={styles.safe}>
       <View style={styles.container}>
-        <SearchInput onChange={setSearchTerm} value={searchTerm} isLoading={isLoading} />
+        <View style={styles.searchContainer}>
+          <SearchInput onChange={setSearchTerm} value={searchTerm} isLoading={isLoading} />
+        </View>
         <SearchResultMovies
           loading={isLoading}
           genres={genres || []}
@@ -49,6 +50,7 @@ const SearchScreen = ({ navigation }: Props) => {
 const styles = StyleSheet.create({
   safe: { backgroundColor: 'white' },
   container: { height: '100%' },
+  searchContainer: { paddingHorizontal: 8 },
 });
 
 export default SearchScreen;
