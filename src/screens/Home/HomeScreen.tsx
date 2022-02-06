@@ -14,12 +14,15 @@ type Props = NativeStackScreenProps<HomeNavigatorParamList, 'Home'>;
 
 const HomeScreen = ({ navigation }: Props) => {
   const { movies, genres, upcomingMovies } = useSelector((state: RootState) => state.movies);
+  const data = useSelector((state: RootState) => state.internetConnection);
 
   useEffect(() => {
-    dispatch.movies.getGenres();
-    dispatch.movies.getMovies();
-    dispatch.movies.getUpcomingMovies();
-  }, []);
+    if (data.status) {
+      dispatch.movies.getGenres();
+      dispatch.movies.getMovies();
+      dispatch.movies.getUpcomingMovies();
+    }
+  }, [data.status]);
 
   const navigateToMoviesDetail = (movie: Movie, _genres: Genre[]) => {
     navigation.navigate('MovieDetail', { movie, genres: _genres });

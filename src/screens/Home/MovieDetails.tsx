@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react';
+import React, { memo, useCallback, useEffect } from 'react';
 import { NativeStackScreenProps } from '@react-navigation/native-stack';
 import Spacer from 'components/core/Spacer';
 import CastList from 'components/movieDetails/CastList';
@@ -34,23 +34,32 @@ const MovieDetails = ({
   } = movie;
   const cast = useSelector((state: RootState) => state.movies.selectedMovieCast);
   const favoriteMovies = useSelector((state: RootState) => state.storedData.favoriteMovies);
+  const status = useSelector((state: RootState) => state.internetConnection.status);
   const isFavorite = favoriteMovies?.filter((movie_) => movie_?.id === id).length > 0;
 
   useEffect(() => {
-    dispatch.movies.getCast(id);
+    if (status) {
+      dispatch.movies.getCast(id);
+    }
 
     return () => {
       dispatch.movies.setSelectedMovieCast([]);
     };
-  }, []);
+  }, [status]);
+
+  const MovieHeaderCb = useCallback(
+    () => <MovieHeader image={Endpoints.image(backdrop_path)} goBack={() => navigation.pop(1)} />,
+    [status, backdrop_path],
+  );
 
   return (
     <View style={{ flex: 1 }}>
       <StatusBar barStyle="light-content" />
-      <MovieHeader image={Endpoints.image(backdrop_path)} goBack={() => navigation.pop(1)} />
+      <MovieHeaderCb />
       <View style={styles.whiteArea} />
       <FlatList
         data={[]}
+        extraData={status}
         renderItem={() => null}
         showsVerticalScrollIndicator={false}
         ListFooterComponent={memo(() => (
