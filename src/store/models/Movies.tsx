@@ -10,7 +10,9 @@ type MoviesInitialState = {
   searchResult: Movie[];
   favoriteMovies: Movie[];
   upcomingMovies: Movie[];
-  selectedMovieCast: Cast[];
+  selectedMovieCast: {
+    [movieId: number]: Cast[];
+  };
 };
 
 const Movies = createModel<RootModel>()({
@@ -28,7 +30,13 @@ const Movies = createModel<RootModel>()({
     setSearchResult: (state, payload: Movie[]) => ({ ...state, searchResult: payload }),
     setFavoriteMovies: (state, payload: Movie[]) => ({ ...state, favoriteMovies: payload }),
     setUpcomingMovies: (state, payload: Movie[]) => ({ ...state, upcomingMovies: payload }),
-    setSelectedMovieCast: (state, payload: Cast[]) => ({ ...state, selectedMovieCast: payload }),
+    setSelectedMovieCast: (state, payload: { [movieId: number]: Cast[] }) => ({
+      ...state,
+      selectedMovieCast: {
+        ...state.selectedMovieCast,
+        ...payload,
+      },
+    }),
   },
   effects: () => ({
     async getMovies() {
@@ -53,7 +61,7 @@ const Movies = createModel<RootModel>()({
 
     async getCast(movieId: number) {
       const cast = await CallApi<Cast[]>(Endpoints.cast(movieId), 'cast');
-      this.setSelectedMovieCast(cast);
+      this.setSelectedMovieCast({ [movieId]: cast });
     },
   }),
 });

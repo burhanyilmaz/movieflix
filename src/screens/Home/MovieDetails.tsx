@@ -27,7 +27,7 @@ const MovieDetails = ({
     vote_count,
     original_language,
   } = movie;
-  const cast = useSelector((state: RootState) => state.movies.selectedMovieCast);
+  const cast = useSelector((state: RootState) => state.movies.selectedMovieCast)?.[id];
   const favoriteMovies = useSelector((state: RootState) => state.storedData.favoriteMovies);
   const status = useSelector((state: RootState) => state.internetConnection.status);
   const isFavorite = favoriteMovies?.filter((movie_) => movie_?.id === id).length > 0;
@@ -38,7 +38,7 @@ const MovieDetails = ({
     }
 
     return () => {
-      dispatch.movies.setSelectedMovieCast([]);
+      dispatch.movies.setSelectedMovieCast({ [id]: [] });
     };
   }, [status]);
 
