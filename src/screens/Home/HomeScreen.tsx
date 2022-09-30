@@ -64,6 +64,7 @@ const HomeScreen = ({ navigation }: Props) => {
           data={[]}
           extraData={[]}
           renderItem={() => null}
+          testID="HomeFlatList"
           ListFooterComponent={RenderPopular}
           ListHeaderComponent={RenderUpcoming}
           showsVerticalScrollIndicator={false}

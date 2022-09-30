@@ -1,0 +1,13 @@
+diff --git a/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js b/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js
+index 97c3972..4ebb3d5 100644
+--- a/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js
++++ b/node_modules/jest-circus/build/legacy-code-todo-rewrite/jestAdapter.js
+@@ -36,7 +36,7 @@ const jestAdapter = async (
+     testPath
+   });
+ 
+-  if (config.fakeTimers.enableGlobally) {
++  if (config.fakeTimers?.enableGlobally) {
+     if (config.fakeTimers.legacyFakeTimers) {
+       // during setup, this cannot be null (and it's fine to explode if it is)
+       environment.fakeTimers.useFakeTimers();

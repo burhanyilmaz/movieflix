@@ -3,7 +3,7 @@ import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import { NavigationContainer } from '@react-navigation/native';
 import { getBottomBarOptions } from 'utils';
 import { TabBarIcons } from 'components/core/icons';
-import { View } from 'react-native';
+import { StyleSheet, View } from 'react-native';
 import Toast from 'react-native-toast-message';
 import useNetInfo from 'hooks/useNetInfo';
 import RNBootSplash from 'react-native-bootsplash';
@@ -27,7 +27,7 @@ const MainNavigator = () => {
   }, []);
 
   return (
-    <View style={{ height: '100%', backgroundColor: 'white', zIndex: 10, position: 'relative' }}>
+    <View style={styles.container} testID="MainNavigator">
       <NavigationContainer>
         <Tab.Navigator>
           <Tab.Screen
@@ -51,5 +51,9 @@ const MainNavigator = () => {
     </View>
   );
 };
+
+const styles = StyleSheet.create({
+  container: { height: '100%', backgroundColor: 'white', zIndex: 10, position: 'relative' },
+});
 
 export default MainNavigator;
