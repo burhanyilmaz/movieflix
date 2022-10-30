@@ -1,0 +1,33 @@
+name: Android - Detox
+
+on: [push]
+jobs:
+  build:
+    runs-on: macos-12
+    env:
+      NITRO_API_KEY: ${{ secrets.NITRO_API_KEY }}
+    steps:
+      - uses: actions/checkout@v3
+      - name: Install Detox dependencies
+        run: |
+          yarn global add detox-cli react-native-cli
+      - uses: nitro-build/github-action-nitro-android@v1
+        id: nitro
+        with:
+          detox-configuration: android.release
+      - name: Run Detox Test(s)
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 31
+          arch: x86_64
+          avd-name: emulator
+          target: default
+          disk-size: 5G
+          ram-size: 2048M
+          heap-size: 512M
+          script: detox test --configuration android.release --headless
+      - name: 🥳 Store screenshots and report as artifacts
+        uses: actions/upload-artifact@v3
+        with:
+          name: e2e-s
+          path: ${{ github.workspace }}/artifacts
